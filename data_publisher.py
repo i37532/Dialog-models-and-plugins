@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-import time
 import zmq
+import time
+import sys
 
 # 配置变量
 PUBLISHER_IP = "192.168.110.203"
@@ -33,7 +34,14 @@ class DataPublisher:
         print("收到订阅者回复：", reply)
         if reply:
             print("订阅者回复成功！停止发送")
+            self.close()  # 只关闭 socket
             return True
+            
+    def close(self):
+        self.socket.close()
+        self.req_socket.close()
+        self.context.term()
+        print("ZeroMQ 资源已释放，发布器已关闭。")
         
 if __name__ == "__main__":
     publisher = DataPublisher()

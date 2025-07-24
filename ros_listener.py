@@ -4,8 +4,8 @@ import zmq
 import threading
 
 # 配置变量
-SUBSCRIBER_IP = "192.168.111.119"
 PUBLISHER_IP = "192.168.110.203"
+SUBSCRIBER_IP = "192.168.111.119"
 PUB_PORT = "5556"
 REP_PORT = "5557"
 
@@ -26,18 +26,22 @@ class ROSListener:
 
     def listen(self):
         def sub_thread():
+            print("订阅线程已启动")
             while True:
                 message = self.socket.recv_string()
                 print("收到数据：", message)
 
         def rep_thread():
+            print("应答线程已启动")
             while True:
                 req = self.rep_socket.recv_string()
                 print("收到请求：", req)
                 self.rep_socket.send_string("已收到你的消息！")
-
+                
         threading.Thread(target=sub_thread, daemon=True).start()
-        rep_thread()
+        threading.Thread(target=rep_thread, daemon=True).start()
+        while True:
+            pass  # 保持主线程运行
 
 if __name__ == "__main__":
     listener = ROSListener()

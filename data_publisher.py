@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import time
 import zmq
 
 # 配置变量
@@ -23,6 +24,7 @@ class DataPublisher:
         print(f"数据发布器连接到应答端口 {rep_address}")
 
     def send_message(self, message):
+        time.sleep(1.5)  # 等待订阅者连接
         self.socket.send_string(message)
         print("已发送：", message)
 

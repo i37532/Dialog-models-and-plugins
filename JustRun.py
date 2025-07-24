@@ -10,13 +10,10 @@ class Plugin(AbstractPlugin):
         self.say('不干了，不干啦，我要跑路啦，世界那么大，我想去看看', cache=True)
         publisher = DataPublisher()
         # 重复发送10次信息
-        for _ in range(10):
-            # 发送消息到 ZeroMQ 发布者
-            # 注意：这里的消息格式可以根据实际需要调整
+        while True:
             message = "status 跑路通知:我不干了"
-            publisher.send_message(message)
+            if publisher.send_message(message):
+                break
 
     def isValid(self, text, parsed):
         return "跑路" in text
-
-

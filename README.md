@@ -1,11 +1,16 @@
 ## 1.与`ROS`通信
 - `data_publisher.py`
 - `ros_listener.py`
-
+```
+pip install pyzmq
+```
 
 
 ## 2.与`stm32`通信
 - `get_stm32_msg.py`
+```
+pip install pyserial
+```
 
 ## 3.功能：
 1. `JustRun.py`：  <br>

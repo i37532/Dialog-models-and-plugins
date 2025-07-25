@@ -5,11 +5,11 @@ import socket
 # 打开串口
 ser = serial.Serial(
     port='/dev/ttyUSB0',    # 串口名称，根据实际情况可能是 ttyUSB0, ttyS0 等
-    baudrate=115200,        # STM32 端的波特率，与你代码中的配置保持一致
+    baudrate=9600,        # STM32 端的波特率，与你代码中的配置保持一致
     timeout=1               # 超时时间，单位为秒
 )
 
-print("开始监听串口 /dev/ttyUSB...")
+print("开始监听串口 /dev/ttyUSB0...")
 
 def send_wakeup_signal():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -27,7 +27,7 @@ try:
                 hum = float(data.split(":")[1])
                 if hum > 80:  # 这里以湿度大于80为例
                     send_wakeup_signal()
-            elif "WAKEUP" in data:
+            elif "Hello" in data:
                 send_wakeup_signal()
                 # 这里可以添加唤醒后的处理逻辑
 except KeyboardInterrupt:

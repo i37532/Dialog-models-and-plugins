@@ -86,6 +86,8 @@ from data_publisher import DataPublisher
 ```
 
 
+### 4. `move.py`：  <br>
+接收移动指令，通过百度`UNIT`识别`方向`和`距离`，并把消息发送给`ROS`。 <br>
 
 
 

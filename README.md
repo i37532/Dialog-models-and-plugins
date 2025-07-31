@@ -90,4 +90,5 @@ from data_publisher import DataPublisher
 接收移动指令，通过百度`UNIT`识别`方向`和`距离`，并把消息发送给`ROS`。 <br>
 
 
-
+### 5.`AI.py`,`car_control.py`: <br>
+提示词，ai根据模板生成对应代码。

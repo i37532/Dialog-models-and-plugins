@@ -78,10 +78,8 @@ class AICarRobot(AbstractRobot):
         你只能使用我已经定义的函数，不能假设或使用任何你认为可能存在的其他函数。
 
         回复均按照如下格式：
-        ```python
         # 这里输出python代码
-        car.move_forward(2.0)
-        ```
+        move_forward(2.0)
 
         此代码功能为：控制小车前进2米。
         你无需考虑car变量的import问题，在环境中已经声明为CarController实例。
@@ -100,30 +98,12 @@ class AICarRobot(AbstractRobot):
         knowledge_prompt = """
         以下是您可以用来控制机器小车的所有可用函数：
 
-        基础控制：
-        - car.start_engine() - 启动小车引擎/电机系统
-        - car.emergency_stop() - 紧急停车
-
         移动控制：
-        - car.move_forward(distance) - 前进指定距离(米)
-        - car.move_backward(distance) - 后退指定距离(米)
-        - car.turn_left(angle) - 左转指定角度(度)
-        - car.turn_right(angle) - 右转指定角度(度)
-        - car.move_to(point) - 移动到指定位置坐标 [x, y]
-
-        路径控制：
-        - car.follow_path(points) - 沿指定路径行驶，points为路径点列表
-
-        速度和方向：
-        - car.get_speed() - 获取当前速度
-        - car.set_heading(heading) - 设置朝向角度(度)
-        - car.get_heading() - 获取当前朝向角度
-
-        位置和传感器：
-        - car.get_car_position() - 获取小车当前位置坐标
-        - car.get_sensor_data(sensor_name) - 获取指定传感器数据
-        - car.get_obstacle_distance() - 获取与最近障碍物的距离
-        - car.get_battery_level() - 获取电池电量百分比
+        - move_forward(distance) - 前进指定距离(米)
+        - move_backward(distance) - 后退指定距离(米)
+        - turn_left(angle) - 左转指定角度(度)
+        - turn_right(angle) - 右转指定角度(度)
+        - follow_point(points) - 移动到指定位置坐标 [x, y]
 
         请根据用户的指令，选择合适的函数组合来完成任务。
         """
@@ -340,3 +320,4 @@ class AICarRobot(AbstractRobot):
             logger.warning("AI小车未找到可执行的代码")
         
         return result
+
